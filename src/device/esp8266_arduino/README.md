@@ -13,7 +13,6 @@ Arduino Setup for ESP8266 :
 Required Arduino Libraries :
 
 0. To install arduino libraries use Sketch->Include Libraries->Library Manager or Add .ZIP Library.
-1. ArduinoJson		: https://github.com/bblanchon/ArduinoJson
-2. ArduinoWebSocket	: https://github.com/Links2004/arduinoWebSockets
-3. PubSubClient		: https://github.com/knolleary/pubsubclient/
+1. ArduinoWebSocket	: https://github.com/Links2004/arduinoWebSockets
+2. PubSubClient		: https://github.com/knolleary/pubsubclient/
 
