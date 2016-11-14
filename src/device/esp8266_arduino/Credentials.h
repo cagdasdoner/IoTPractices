@@ -2,16 +2,16 @@
 #define ARDUINO_CREDENTIALS_H
 
 /* WiFi Credentials*/
-#define STATION_DUMMY_SSID "YOUR_SSID"
-#define STATION_DUMMY_PASS "YOUR_PASSPHRASE"
+#define STA_SSID "YOUR_SSID"
+#define STA_PASS "YOUR_PASSPHRASE"
 
 /* WebSocket Credentials */
 #define WSOCK_HOST "WS_HOST"
-#define WSOCK_PORT "WS_PORT_AS_INT"
+#define WSOCK_PORT 80
 
 /* MQTT Credentials */
 #define MQTT_BROKER       "MQTT_BROKER_ADDR"
-#define MQTT_BROKER_PORT  "MQTT_PORT_AS_INT"
+#define MQTT_BROKER_PORT  1883
 #define MQTT_USERNAME     "MQTT_USER"
 #define MQTT_KEY          "MQTT_KEY"
 
