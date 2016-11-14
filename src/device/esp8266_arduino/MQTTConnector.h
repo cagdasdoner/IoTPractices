@@ -7,7 +7,7 @@
 
 #define MQTT_TYPE_INIT     "mqtt_init"
 
-void MQTTInit();
+void MQTTBegin();
 void MQTTLoop();
 boolean MQTTDeliver(const char* topic, const char* payload);
 

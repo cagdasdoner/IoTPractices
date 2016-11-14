@@ -7,20 +7,19 @@
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
+
 static const Protocol_t protocol = MQTT;
 boolean mqttInitCompleted = false;
-String clientId = "IoTTraining-" + String(ESP.getChipId());
+String clientId = "IoTPractice-" + String(ESP.getChipId());
 
 /* Incoming data callback. */
 void dataCallback(char* topic, byte* payload, unsigned int length)
 {
-  Serial.printf("Data    : Topic : [%s]\n", topic);
-  Serial.printf("Data    : Payload : ");
-  for (int i = 0; i < length; i++)
-  {
-    Serial.printf("%c", (char)payload[i]);
-  }
-  Serial.printf("\n");
+  char payloadStr[length + 1];
+  memset(payloadStr, 0, length + 1);
+  Printf("Data    : dataCallback. Topic : [%s]\n", topic);
+  strncpy(payloadStr, (char*)payload, length);
+  Printf("Data    : dataCallback. Payload : %s\n", payloadStr);
   
   /* Implement your action! */
 }
@@ -30,10 +29,10 @@ void performConnect()
   uint16_t connection_delay = 5000;
   while (!mqttClient.connected())
   {
-    Serial.printf("Trace   : Attempting MQTT connection...\n");
+    Printf("Trace   : Attempting MQTT connection...\n");
     if (mqttClient.connect(clientId.c_str(), MQTT_USERNAME, MQTT_KEY))
     {
-      Serial.printf("Trace   : Connected to Broker.\n");
+      Printf("Trace   : Connected to Broker.\n");
 
       /* Do subscribe to your related topic! */
 
@@ -41,8 +40,8 @@ void performConnect()
     }
     else
     {
-      Serial.printf("Error!  : MQTT Connect failed, rc = %d\n", mqttClient.state());
-      Serial.printf("Trace   : Try again in %d msec.\n", connection_delay);
+      Printf("Error!  : MQTT Connect failed, rc = %d\n", mqttClient.state());
+      Printf("Trace   : Try again in %d msec.\n", connection_delay);
       delay(connection_delay);
     }
   }
@@ -59,7 +58,7 @@ boolean MQTTDeliver(const char* topic, const char* payload)
   return retval;
 }
 
-void MQTTInit()
+void MQTTBegin()
 {
   mqttClient.setServer(MQTT_BROKER, MQTT_BROKER_PORT);
   mqttClient.setCallback(dataCallback);
