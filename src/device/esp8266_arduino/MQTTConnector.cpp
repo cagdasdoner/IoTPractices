@@ -2,6 +2,7 @@
 #include <PubSubClient.h>
 
 #include "MQTTConnector.h"
+#include "Hardware.h"
 #include "Global.h"
 #include "Credentials.h"
 
@@ -17,11 +18,9 @@ void dataCallback(char* topic, byte* payload, unsigned int length)
 {
   char payloadStr[length + 1];
   memset(payloadStr, 0, length + 1);
-  Printf("Data    : dataCallback. Topic : [%s]\n", topic);
   strncpy(payloadStr, (char*)payload, length);
+  Printf("Data    : dataCallback. Topic : [%s]\n", topic);
   Printf("Data    : dataCallback. Payload : %s\n", payloadStr);
-  
-  /* Implement your action! */
 }
 
 void performConnect()
@@ -33,15 +32,12 @@ void performConnect()
     if (mqttClient.connect(clientId.c_str(), MQTT_USERNAME, MQTT_KEY))
     {
       Printf("Trace   : Connected to Broker.\n");
-
-      /* Do subscribe to your related topic! */
-
       mqttClient.subscribe(MQTT_TOPIC_SENSOR);
     }
     else
     {
       Printf("Error!  : MQTT Connect failed, rc = %d\n", mqttClient.state());
-      Printf("Trace   : Try again in %d msec.\n", connection_delay);
+      Printf("Trace   : Trying again in %d msec.\n", connection_delay);
       delay(connection_delay);
     }
   }
@@ -54,8 +50,12 @@ boolean MQTTDeliver(const char* topic, const char* payload)
   {
     retval = mqttClient.publish(topic, payload);
   }
-  
   return retval;
+}
+
+boolean MQTTConnected()
+{
+  return mqttClient.connected();
 }
 
 void MQTTBegin()
@@ -69,7 +69,7 @@ void MQTTLoop()
 {
   if(mqttInitCompleted)
   {
-    if (!mqttClient.connected())
+    if (!MQTTConnected())
     {
       performConnect();
     }

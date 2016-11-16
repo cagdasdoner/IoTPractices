@@ -4,11 +4,11 @@
 #include <Arduino.h>
 
 #define MQTT_TOPIC_SENSOR  "/iot/text/sensor"
+#define MQTT_TOPIC_RELAY   "/iot/text/relay"
 
-#define MQTT_TYPE_INIT     "mqtt_init"
-
-void MQTTBegin();
-void MQTTLoop();
+void    MQTTBegin();
+void    MQTTLoop();
 boolean MQTTDeliver(const char* topic, const char* payload);
+boolean MQTTConnected();
 
 #endif /* ARDUINO_MQTTCONNECTOR_H */

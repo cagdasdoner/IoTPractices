@@ -9,9 +9,11 @@
 //#define USE_GENERIC_ESP8266
 //#define USE_ADAFRUIT_HUZZAH
 
-#define LEN_IP_MAX         17 
-#define LEN_SSID_MAX       32 
-#define LEN_PASSPHRASE_MAX 64
+/* Buffer sizes */
+#define LEN_IP_MAX          17 
+#define LEN_SSID_MAX        32 
+#define LEN_PASSPHRASE_MAX  64
+#define LEN_TEMP_MAX        6
 
 /* Protocol Definitions */
 typedef enum Protocol

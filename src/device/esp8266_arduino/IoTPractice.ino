@@ -3,23 +3,23 @@
 
 #include "WiFiCore.h"
 #include "MQTTConnector.h"
+#include "Timer.h"
+#include "Hardware.h"
 #include "Global.h"
 #include "Credentials.h"
 
-void SerialBegin()
-{
-  Serial.begin(SERIAL_BAUD_RATE);
-  Serial.setDebugOutput(true);
-}
-
 void setup() 
 {
-  SerialBegin();
+  HWInit();
   WiFiBegin(STA_SSID, STA_PASS);
   MQTTBegin();
+  TIMERInit();
 }
 
 void loop() 
 {
+  HWLoop();
   MQTTLoop();
+  TIMERLoop();
+  yield();
 }
