@@ -10,10 +10,3 @@ Arduino Setup for ESP8266 :
 8. To be able to write SW on device and get traces, select a proper device path from Port section.
 9. For linux users, add your user to the group of dialout to enable serial comm. 
 
-Required Arduino Libraries :
-
-0. To install arduino libraries use Sketch->Include Libraries->Library Manager or Add .ZIP Library.
-1. ArduinoWebSocket	: https://github.com/Links2004/arduinoWebSockets
-2. PubSubClient		: https://github.com/knolleary/pubsubclient/
-3. ArduinoHTTPClient    : https://github.com/arduino-libraries/ArduinoHttpClient
-
