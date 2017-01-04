@@ -2,7 +2,8 @@
 #include "TempSensor.h"
 #include "Global.h"
 
-short hw_delay = 10;
+uint16_t hw_delay = 10;
+uint16_t hw_init_done = false;
 
 void SerialInit()
 {
@@ -29,6 +30,7 @@ void HWInit()
   SerialInit();
   GPIOInit();
   TEMPInit();
+  hw_init_done = true;
 }
 
 void HWRestart()
@@ -43,5 +45,8 @@ float HWGetTempString(uint8_t id, char* tempBuf)
 
 void HWLoop()
 {
-  TEMPLoop();
+  if(hw_init_done)
+  {
+    TEMPLoop();
+  }
 }

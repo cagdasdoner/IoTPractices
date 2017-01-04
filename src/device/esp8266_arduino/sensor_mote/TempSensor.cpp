@@ -5,6 +5,8 @@
 #include "Global.h"
 
 const uint8_t sensitivity = 12;
+const uint8_t temp_delay = 10;
+bool temp_init_done = false;
 
 /* Library lacks empty constructor.
  * Not able to trigger from Hardware.cpp. Think to add it to the lib.
@@ -41,8 +43,10 @@ void printTemperature()
 void TEMPInit()
 {
   sensors.setOneWire(&oneWire);
+  delay(temp_delay);
   sensors.begin();
   Printf("Trace   : Found %d Sensor devices.\n", sensors.getDeviceCount());
+  temp_init_done = true;
 }
 
 float TEMPGet(uint8_t id)
@@ -73,9 +77,12 @@ void TEMPGetString(uint8_t id, char* tempBuffer)
 
 void TEMPLoop()
 {
-  if(sensors.getDeviceCount())
+  if(temp_init_done)
   {
-    sensors.requestTemperatures();
+    if(sensors.getDeviceCount())
+    {
+      sensors.requestTemperatures();
+    }
   }
 }
 
