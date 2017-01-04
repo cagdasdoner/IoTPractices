@@ -9,5 +9,6 @@
 void    MQTTBegin();
 void    MQTTLoop();
 boolean MQTTDeliver(const char* topic, const char* payload);
+boolean MQTTSubscribe(const char* topicToSubscribe);
 
 #endif /* ARDUINO_MQTTCONNECTOR_H */

@@ -1,8 +1,8 @@
 #ifndef ARDUINO_GLOBAL_H
 #define ARDUINO_GLOBAL_H
 
-#define Printf Serial.printf
-#define SERIAL_BAUD_RATE 9600
+#define Printf            Serial.printf
+#define SERIAL_BAUD_RATE  9600
 
 /* Board Definitions */
 #define USE_NODEMCU_BOARD

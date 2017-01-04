@@ -27,7 +27,7 @@ void dataCallback(char* topic, byte* payload, unsigned int length)
 /* MQTT connector function. */
 void performConnect()
 {
-  uint16_t connection_delay = 5000;
+  uint16_t connectionDelay = 5000;
   while (!mqttClient.connected())
   {
     Printf("Trace   : Attempting MQTT connection...\n");
@@ -40,8 +40,8 @@ void performConnect()
     else
     {
       Printf("Error!  : MQTT Connect failed, rc = %d\n", mqttClient.state());
-      Printf("Trace   : Trying again in %d msec.\n", connection_delay);
-      delay(connection_delay);
+      Printf("Trace   : Trying again in %d msec.\n", connectionDelay);
+      delay(connectionDelay);
     }
   }
 }
@@ -53,6 +53,17 @@ boolean MQTTDeliver(const char* topic, const char* payload)
   if (mqttClient.connected())
   {
     retval = mqttClient.publish(topic, payload);
+  }
+  return retval;
+}
+
+/* MQTT Subscriber function. */
+boolean MQTTSubscribe(const char* topicToSubscribe)
+{
+  boolean retval = false;
+  if (mqttClient.connected())
+  {
+    retval = mqttClient.subscribe(topicToSubscribe);
   }
   return retval;
 }
