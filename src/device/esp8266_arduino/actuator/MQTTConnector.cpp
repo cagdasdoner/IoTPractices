@@ -68,6 +68,12 @@ boolean MQTTSubscribe(const char* topicToSubscribe)
   return retval;
 }
 
+/* Gather MQTT status. */
+boolean MQTTConnected()
+{
+  return mqttClient.connected();
+}
+
 /* Init MQTT process */
 void MQTTBegin()
 {
@@ -81,7 +87,7 @@ void MQTTLoop()
 {
   if(mqttInitCompleted)
   {
-    if (!mqttClient.connected())
+    if (!MQTTConnected())
     {
       performConnect();
     }

@@ -10,7 +10,7 @@ extern "C" {
 
 os_timer_t publishTimer;
 boolean publishTimerTick = false;
-unsigned int timerDelay = 10000;
+unsigned int timerDelay = 30000;
 
 void publishCallback(void *pArg)
 {

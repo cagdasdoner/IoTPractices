@@ -4,15 +4,16 @@
 #include "Credentials.h"
 #include "Global.h"
 
+HTTPClient http;
+
 unsigned short postThingSpeak(char* data)
 {
   boolean httpCode = 0;
   char httpPath[LEN_HTTP_PATH_MAX];
   memset(httpPath, 0, LEN_HTTP_PATH_MAX);
   snprintf(httpPath, LEN_HTTP_PATH_MAX, "%s/update?api_key=%s&field1=%s", TSPEAK_HOST, TSPEAK_API_KEY, data);
-  Printf("path : %s\n", httpPath);
+  Printf("Trace   : Path to post : %s\n", httpPath);
 
-  HTTPClient http;
   http.begin(httpPath);
   /* HTTPS config. */
   //http.begin(httpPath, "7a 9c f4 db 40 d3 62 5a 6e 21 bc 5c cc 66 c8 3e a1 45 59 38");
