@@ -17,54 +17,74 @@ should be sent to those pins using virtualWrites. Examples for sending and recei
 Virtual Pin data are under the Basics folder.
 */
 
+#include "Credentials.h"
+#include "Hardware.h"
+
 #include "CayenneDefines.h"
 #include "BlynkSimpleEsp8266.h"
 #include "CayenneWiFiClient.h"
 
-#include "Credentials.h"
-#include "Hardware.h"
+#ifdef USE_DS18B20_TEMP_SENSOR
+#include <OneWire.h>
+#include <DallasTemperature.h>
+/* Digital pin the DS18B20 is connected to. */
+const int tempPin = pinMap[2];
+/* Setting up one-wire protocol for sensor. */
+OneWire oneWire(tempPin);
+DallasTemperature sensors(&oneWire);
+#endif
 
 void setup()
 {
-  Serial.begin(BAUD_RATE);
-  pinMode(pinMap[16], OUTPUT);
-  pinMode(pinMap[5], OUTPUT);
+  pinMode(pinMap[4], OUTPUT);
+  pinMode(pinMap[3], OUTPUT);
+  Serial.begin(9600);
+  delay(10);
   Cayenne.begin(CAYENNE_TOKEN, STA_SSID, STA_PASS);
-}
-
-CAYENNE_IN(VIRTUAL_PIN)
-{
-  /* get value sent from dashboard */
-  int currentValue = getValue.asInt();
-
-  /* Using low level trigger due to 3.3V. */
-  if (currentValue == 0)
-  {
-    digitalWrite(pinMap[16], HIGH);
-  }
-  else
-  {
-    digitalWrite(pinMap[16], LOW);
-  }
-}
-
-CAYENNE_IN(VIRTUAL_PIN2)
-{
-  /* get value sent from dashboard */
-  int currentValue = getValue.asInt();
-
-  /* Using low level trigger due to 3.3V. */
-  if (currentValue == 0)
-  {
-    digitalWrite(pinMap[5], HIGH);
-  }
-  else
-  {
-    digitalWrite(pinMap[5], LOW);
-  }
+#ifdef USE_DS18B20_TEMP_SENSOR  
+  sensors.begin();
+#endif
 }
 
 void loop()
 {
   Cayenne.run();
 }
+
+CAYENNE_IN(VIRTUAL_PIN_SWITCH_1)
+{
+  int value = getValue.asInt();
+  CAYENNE_LOG("Got a value: %d", value);
+ 
+  if (value == 0)
+  {
+    digitalWrite(pinMap[4], LOW);
+  }
+  else
+  {
+    digitalWrite(pinMap[4], HIGH);
+  } 
+}
+
+CAYENNE_IN(VIRTUAL_PIN_SWITCH_2)
+{
+  int value = getValue.asInt();
+  CAYENNE_LOG("Got a value: %d", value);
+ 
+  if (value == 0)
+  {
+    digitalWrite(pinMap[3], LOW);
+  }
+  else
+  {
+    digitalWrite(pinMap[3], HIGH);
+  } 
+}
+
+#ifdef USE_DS18B20_TEMP_SENSOR
+CAYENNE_OUT(VIRTUAL_PIN_TEMP_1)
+{
+  sensors.requestTemperatures();
+  Cayenne.celsiusWrite(VIRTUAL_PIN_TEMP_1, sensors.getTempCByIndex(0));
+}
+#endif
