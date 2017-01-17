@@ -1,17 +1,20 @@
 Setup Guide for Raspberry
 
-git clone https://github.com/eclipse/paho.mqtt.c.git
-cd paho.mqtt.c.git
-make
-sudo make install
+1. git clone https://github.com/eclipse/paho.mqtt.c.git
+2. cd paho.mqtt.c.git
+3. make
+4. sudo make install
 
-NOTE: Raspberry need to have OpenSSL and Curl libraries. Type it :
-sudo apt-get install libssl-dev
-sudo apt-get install libcurl3
+
+NOTE: Raspberry need to have OpenSSL and Curl libraries. Type them :
+1. sudo apt-get install libssl-dev
+2. sudo apt-get install libcurl3
+
 
 To compile and run the workshop code, use type them below :
-make all
-./workshop
+1. make all
+2. ./workshop
+
 
 This tiny app aims to subscribe to a topic and post retrieved data to ThingSpeak or any other cloud service.
 
