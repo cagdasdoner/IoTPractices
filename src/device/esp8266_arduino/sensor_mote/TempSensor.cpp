@@ -64,6 +64,7 @@ float TEMPGet(uint8_t id)
 
 void TEMPGetString(uint8_t id, char* tempBuffer)
 {
+  sensors.requestTemperatures();
   DeviceAddress temper;
   memset(tempBuffer, 0, LEN_TEMP_MAX);
   if (sensors.getDeviceCount() && sensors.getAddress(temper, id))
@@ -79,10 +80,10 @@ void TEMPLoop()
 {
   if(temp_init_done)
   {
-    if(sensors.getDeviceCount())
+    /*if(sensors.getDeviceCount())
     {
       sensors.requestTemperatures();
-    }
+    }*/
   }
 }
 

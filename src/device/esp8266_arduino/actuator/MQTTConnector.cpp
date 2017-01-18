@@ -2,6 +2,7 @@
 #include <PubSubClient.h>
 
 #include "MQTTConnector.h"
+#include "HTTPConnector.h"
 #include "Global.h"
 #include "Credentials.h"
 
@@ -22,6 +23,14 @@ void dataCallback(char* topic, byte* payload, unsigned int length)
   Printf("Data    : dataCallback. Payload : %s\n", payloadStr);
 
   /* Do your action in here ! */
+  if(HTTPPostCloud(payloadStr))
+  {
+    Printf("HTTP POST done.\n");
+  }
+  else
+  {
+    Printf("Failed HTTP post!\n");
+  }
 }
 
 /* MQTT connector function. */
@@ -36,6 +45,7 @@ void performConnect()
       Printf("Trace   : Connected to Broker.\n");
       
       /* Do subscribe to the topic in here ! */
+      MQTTSubscribe(MQTT_TOPIC_SENSOR);
     }
     else
     {
