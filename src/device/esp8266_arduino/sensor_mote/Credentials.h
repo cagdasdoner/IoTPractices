@@ -2,18 +2,18 @@
 #define ARDUINO_CREDENTIALS_H
 
 /* WiFi Credentials*/
-#define STA_SSID "AndroidTv_01"
-#define STA_PASS "123456789"
+#define STA_SSID "YOUR_SSID"
+#define STA_PASS "YOUR_PASS"
 
 /* WebSocket Credentials */
 #define WSOCK_HOST "WS_HOST"
 #define WSOCK_PORT 80
 
 /* MQTT Credentials */
-#define MQTT_BROKER       "hommycloud.com"
+#define MQTT_BROKER       "YOUR_MQTT_BROKER_ADDR"
 #define MQTT_BROKER_PORT  1883
-#define MQTT_USERNAME     "vestelPractice"
-#define MQTT_KEY          "doityourself"
+#define MQTT_USERNAME     "YOUR_MQTT_USER"
+#define MQTT_KEY          "YOUR_MQTT_PASS"
 
 /* ThingSpeak Credentials */
 #define TSPEAK_HOST       "http://api.thingspeak.com"
