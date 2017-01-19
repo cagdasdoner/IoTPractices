@@ -8,7 +8,7 @@
 
 void    MQTTBegin();
 void    MQTTLoop();
-boolean MQTTDeliver(const char* topic, const char* payload);
+boolean MQTTPublish(const char* topic, const char* payload);
 boolean MQTTSubscribe(const char* topicToSubscribe);
 boolean MQTTConnected();
 

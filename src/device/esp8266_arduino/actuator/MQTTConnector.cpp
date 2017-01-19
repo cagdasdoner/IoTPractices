@@ -22,15 +22,10 @@ void dataCallback(char* topic, byte* payload, unsigned int length)
   Printf("Data    : dataCallback. Topic : [%s]\n", topic);
   Printf("Data    : dataCallback. Payload : %s\n", payloadStr);
 
-  /* Do your action in here ! */
-  if(HTTPPostCloud(payloadStr))
-  {
-    Printf("HTTP POST done.\n");
-  }
-  else
-  {
-    Printf("Failed HTTP post!\n");
-  }
+
+  /* Do your implementation in here ! */
+
+
 }
 
 /* MQTT connector function. */
@@ -44,8 +39,10 @@ void performConnect()
     {
       Printf("Trace   : Connected to Broker.\n");
       
-      /* Do subscribe to the topic in here ! */
-      MQTTSubscribe(MQTT_TOPIC_SENSOR);
+
+      /* Do your implementation in here ! */
+
+
     }
     else
     {
@@ -57,7 +54,7 @@ void performConnect()
 }
 
 /* MQTT Publisher function. */
-boolean MQTTDeliver(const char* topic, const char* payload)
+boolean MQTTPublish(const char* topic, const char* payload)
 {
   boolean retval = false;
   if (mqttClient.connected())
