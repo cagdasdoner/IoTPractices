@@ -78,5 +78,9 @@ void MQTTBegin()
         printf("Failed to connect, return code %d\n", rc);
         exit(-1);       
     }
+    else
+    {
+        printf("MQTT connection established.\n");
+    }
 }
 
