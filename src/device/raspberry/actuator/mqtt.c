@@ -25,10 +25,16 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
 
     printf("%s\n", payloadToPost);
 
-    
-    /* Do your implementation in here! */
+    if(strncmp(topicName, SENSOR_TOPIC, topicLen) == 0)
+    {
+        int temperatureAsInteger = atoi(payloadToPost);
 
-    
+
+        /* Do your implementation in here! */
+
+
+    }
+
     MQTTClient_freeMessage(&message);
     MQTTClient_free(topicName);
 
