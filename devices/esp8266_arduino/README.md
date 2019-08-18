@@ -37,7 +37,8 @@ $ cd IoTPractices/devices/esp8266_arduino/actuator
 #define STA_PASS "YOUR_WIFI_PASS"
 
 /* MQTT Credentials */
-#define MQTT_BROKER       "YOUR_MQTT_BROKER_ADDR"
+#define MQTT_BROKER       "www.maqiatto.com"
+#define MQTT_BROKER_PORT  1883
 #define MQTT_USERNAME     "YOUR_MQTT_USER"
 #define MQTT_KEY          "YOUR_MQTT_PASS"
 
@@ -46,6 +47,7 @@ $ cd IoTPractices/devices/esp8266_arduino/actuator
 #define TSPEAK_PORT       80
 #define TSPEAK_API_KEY    "YOUR_TS_API_KEY"
 ```
+* NOTICE that, [maqiatto.com](https://www.maqiatto.com) will be your MQTT broker during the practice.
 * After updating the credentials, workshop code is ready to be burnt into your device. You can now follow the given instructions during the workshop.
 * After you have successfully connect to your WiFi Network, MQTT connection will be provided. you can see below logs under **Serial Monitor** of the IDE :
 ```
