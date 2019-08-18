@@ -1,4 +1,4 @@
-## Client Connection Guide for Arduino based ESP8266
+## Guide for Arduino based ESP8266
 Below steps will guide you to run ESP8266 based MQTT samples via Arduino IDE.
 ### Arduino IDE Setup
 * Install the Arduino IDE 1.6.4 or greater from this [site](https://www.arduino.cc/en/Main/Software)

@@ -1,4 +1,4 @@
-## Client Connection Guide for ESP32
+## Guide for ESP32
 
 ### Environment Setup for ESP32
 * Before start, please follow [this](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html#get-started-get-esp-idf) brilliant setup guide to make your environment ready with ESP32.
